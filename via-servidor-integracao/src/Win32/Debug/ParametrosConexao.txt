@@ -1,6 +1,6 @@
-Database=E:\Viasoft\Dados\Firebird\POLLI\POLLI.FDB
-User_Name=VIASOFT
-Password=153
+Database=
+User_Name=
+Password=
 Protocol=TCPIP
 Server=localhost
 Port=3050
