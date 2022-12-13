@@ -1,4 +1,4 @@
-Database=E:\Viasoft\Dados\Firebird\PDI-2022-2\EXPEDICAO.FDB
+Database=
 User_Name=SYSDBA
 Password=masterkey
 Protocol=TCPIP
