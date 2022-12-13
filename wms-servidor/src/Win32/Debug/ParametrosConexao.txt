@@ -1,0 +1,8 @@
+Database=E:\Viasoft\Dados\Firebird\PDI-2022-2\EXPEDICAO.FDB
+User_Name=SYSDBA
+Password=masterkey
+Protocol=TCPIP
+Server=localhost
+Port=3050
+CharacterSet=ISO8859_1
+DriverID=FB

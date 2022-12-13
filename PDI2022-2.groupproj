@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2250C12B-CD7F-4616-BC3B-86A011C20B8B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="via-servidor-integracao\src\ViaServidorIntegracao.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="wms-servidor\src\WmsServidor.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ViaServidorIntegracao">
+        <MSBuild Projects="via-servidor-integracao\src\ViaServidorIntegracao.dproj"/>
+    </Target>
+    <Target Name="ViaServidorIntegracao:Clean">
+        <MSBuild Projects="via-servidor-integracao\src\ViaServidorIntegracao.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ViaServidorIntegracao:Make">
+        <MSBuild Projects="via-servidor-integracao\src\ViaServidorIntegracao.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WmsServidor">
+        <MSBuild Projects="wms-servidor\src\WmsServidor.dproj"/>
+    </Target>
+    <Target Name="WmsServidor:Clean">
+        <MSBuild Projects="wms-servidor\src\WmsServidor.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WmsServidor:Make">
+        <MSBuild Projects="wms-servidor\src\WmsServidor.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ViaServidorIntegracao;WmsServidor"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ViaServidorIntegracao:Clean;WmsServidor:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ViaServidorIntegracao:Make;WmsServidor:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
