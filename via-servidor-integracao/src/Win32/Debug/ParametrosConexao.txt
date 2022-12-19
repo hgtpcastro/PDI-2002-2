@@ -1,8 +1,0 @@
-Database=
-User_Name=
-Password=
-Protocol=TCPIP
-Server=localhost
-Port=3050
-CharacterSet=ISO8859_1
-DriverID=FB
