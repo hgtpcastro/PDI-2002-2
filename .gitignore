@@ -67,3 +67,7 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
+
+via-servidor-integracao/src/Win32/Debug/ParametrosConexao.txt
+
+wms-servidor/src/Win32/Debug/ParametrosConexao.txt
