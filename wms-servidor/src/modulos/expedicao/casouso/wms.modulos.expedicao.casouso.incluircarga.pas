@@ -34,8 +34,6 @@ uses
   System.Generics.Collections,
   // TMS Bcl
   Bcl.Json, System.SysUtils;
-  // WmsServidor
-//  wms.modulos.expedicao.servico.dto.webhook;
 
 { TSincronizarOrdemCarga }
 

@@ -20,7 +20,7 @@ type
     FRepositorio: IOrdemCargaRepositorio;
     FIntegracaoWmsServico: IIntegracaoWmsServico;
     function  ConsultarDadosOrdemCarga(const AIdCarga: Integer): TOrdemCarga;
-    function IncluirOrdemCargaNoWms(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
+    function IncluirCargaNoWms(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
   public
     constructor Create(const ARepositorio: IOrdemCargaRepositorio; const AServico: IIntegracaoWmsServico);
     class function New(const ARepositorio: IOrdemCargaRepositorio; const AServico: IIntegracaoWmsServico): ICasoUso<TRequisicaoSincronizarOrdemCargaDto, TRespostaPadraoDto>;
@@ -56,14 +56,14 @@ var
   LOrdemCarga: TOrdemCarga;
 begin
   LOrdemCarga := Self.ConsultarDadosOrdemCarga(ARequisicao.idCarga);
-  Result := Self.IncluirOrdemCargaNoWms(LOrdemCarga);
+  Result := Self.IncluirCargaNoWms(LOrdemCarga);
 end;
 
-function TSincronizarOrdemCargaCasoUso.IncluirOrdemCargaNoWms(
+function TSincronizarOrdemCargaCasoUso.IncluirCargaNoWms(
   const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
 begin
   if Assigned(FIntegracaoWmsServico) then
-    Result := FIntegracaoWmsServico.IncluirOrdemCarga(AOrdemCarga)
+    Result := FIntegracaoWmsServico.IncluirCarga(AOrdemCarga)
   else
     Result := TRespostaPadraoDtoFactory.Falha('Serviço de integração não informado!');
 end;

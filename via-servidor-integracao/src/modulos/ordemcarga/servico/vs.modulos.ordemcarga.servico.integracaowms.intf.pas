@@ -11,7 +11,7 @@ type
 
   IIntegracaoWmsServico = interface
     ['{C8BA6541-5234-4DAC-836D-F72F2833B097}']
-    function IncluirOrdemCarga(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
+    function IncluirCarga(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
   end;
 
 implementation

@@ -19,7 +19,7 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New: IIntegracaoWmsServico;
-    function IncluirOrdemCarga(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
+    function IncluirCarga(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
   end;
 
 implementation
@@ -56,7 +56,7 @@ begin
   inherited;
 end;
 
-function TIntegracaoWmsServico.IncluirOrdemCarga(
+function TIntegracaoWmsServico.IncluirCarga(
   const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
 var
   LClienteRest: TXDataClient;
