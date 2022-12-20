@@ -2,8 +2,8 @@ object FPrincipal: TFPrincipal
   Left = 0
   Top = 0
   Caption = 'Servidor de Integra'#231#227'o Expedi'#231#227'o X WMS'
-  ClientHeight = 191
-  ClientWidth = 572
+  ClientHeight = 300
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FPrincipal: TFPrincipal
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 572
+    Width = 1000
     Height = 43
     Align = alTop
     Caption = 'Servidor Integra'#231#227'o Expedi'#231#227'o X Wms'
@@ -35,8 +35,8 @@ object FPrincipal: TFPrincipal
   object Panel2: TPanel
     Left = 0
     Top = 43
-    Width = 572
-    Height = 129
+    Width = 1000
+    Height = 238
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel2'
@@ -44,19 +44,26 @@ object FPrincipal: TFPrincipal
     object memLog: TMemo
       Left = 0
       Top = 0
-      Width = 572
-      Height = 129
+      Width = 1000
+      Height = 238
       Align = alClient
       BorderStyle = bsNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Courier New'
+      Font.Style = []
       Lines.Strings = (
         '')
+      ParentFont = False
+      ScrollBars = ssVertical
       TabOrder = 0
     end
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 172
-    Width = 572
+    Top = 281
+    Width = 1000
     Height = 19
     Panels = <>
   end

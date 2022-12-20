@@ -30,6 +30,8 @@ implementation
 
 uses
   System.SysUtils,
+  // TMS Logger
+  Vcl.TMSLogging,
   // TMS Aurelius
   Aurelius.Drivers.Interfaces,
   // TMS XData
@@ -67,6 +69,8 @@ var
   LOrdemCargaCarreg: TOrdemCargaCarreg;
   LTransacao: IDBTransaction;
 begin
+  TMSLogger.Info(Format('Recebendo dados da Ordem Carga(%d), do WMS via WebHook.',[ARequisicao.idCarga]));
+  Sleep(3000);
   LTransacao := FObjectManager.Connection.BeginTransaction;
   try
     for LItemDto in ARequisicao.listaItens do
@@ -77,6 +81,7 @@ begin
     end;
     LTransacao.Commit;
 
+    TMSLogger.Info('Carregamento finalizado.');
     Result := TRespostaPadraoDtoFactory.Sucesso('Processado com sucesso!');
   except
     on E: Exception do

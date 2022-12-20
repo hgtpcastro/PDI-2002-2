@@ -31,9 +31,12 @@ type
 implementation
 
 uses
+  System.SysUtils,
   System.Generics.Collections,
+  // TMS Logger
+  Vcl.TMSLogging,
   // TMS Bcl
-  Bcl.Json, System.SysUtils;
+  Bcl.Json;
 
 { TSincronizarOrdemCarga }
 
@@ -51,10 +54,12 @@ var
   LCarga: TCarga;
   LCargaList: TList<TCarga>;
 begin
+  TMSLogger.Info('Disparando o evento de carregamento finalizado, via WebHook.');
   LCargaList := FRepositorio.ConsultarCargaFinalizada;
   try
     for LCarga in LCargaList do
     begin
+      Sleep(3000);
       FWebHookServico.IncluirCarregamento(LCarga);
     end;
   finally
@@ -65,10 +70,12 @@ end;
 function TIncluirCargaCasoUso.Executar(const ARequisicao: TRequisicaoIncluirCargaDto): TRespostaPadraoWmsDto;
 begin
   try
-    Self.IncluirCargaNoBancoDados(ARequisicao);
+    TMSLogger.Info(Format('Incluindo carga (%d) recebida do Servidor de Integração Exped.',[ARequisicao.idCarga]));
     Sleep(3000);
+    Self.IncluirCargaNoBancoDados(ARequisicao);
     Self.FinalizarCarregamento;
     Self.DispararEventoCarregamentoFinalizado;
+    TMSLogger.LogSeparator;
     Result := TRespostaPadraoWmsDtoFactory.Sucesso('Processado com Sucesso!');
   except
     on E: Exception do
@@ -83,6 +90,7 @@ procedure TIncluirCargaCasoUso.IncluirCargaNoBancoDados(
 var
   LCarga: TCarga;
 begin
+  TMSLogger.Info('Incluindo a carga no banco de dados.');
   LCarga := TCarga.Create;
   try
     LCarga.IdCarga := ARequisicao.idCarga;
@@ -93,6 +101,7 @@ begin
   finally
     LCarga.Free;
   end;
+  Sleep(3000);
 end;
 
 class function TIncluirCargaCasoUso.New(
@@ -108,6 +117,7 @@ var
   LCargaAlterada: TCarga;
   LCargaList: TList<TCarga>;
 begin
+  TMSLogger.Info('Finalizando o carregamento.');
   LCargaList := FRepositorio.ConsultarCargaNaoFinalizada;
   try
     for LCarga in LCargaList do
@@ -119,6 +129,7 @@ begin
   finally
     LCargaList.Free;
   end;
+  Sleep(3000);
 end;
 
 end.

@@ -2,8 +2,8 @@ object FPrincipal: TFPrincipal
   Left = 0
   Top = 0
   Caption = 'Servidor WMS'
-  ClientHeight = 191
-  ClientWidth = 572
+  ClientHeight = 300
+  ClientWidth = 1000
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FPrincipal: TFPrincipal
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 572
+    Width = 1000
     Height = 43
     Align = alTop
     BevelOuter = bvNone
@@ -36,8 +36,8 @@ object FPrincipal: TFPrincipal
   object Panel2: TPanel
     Left = 0
     Top = 43
-    Width = 572
-    Height = 148
+    Width = 1000
+    Height = 257
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel2'
@@ -45,12 +45,19 @@ object FPrincipal: TFPrincipal
     object memLog: TMemo
       Left = 0
       Top = 0
-      Width = 572
-      Height = 148
+      Width = 1000
+      Height = 257
       Align = alClient
       BorderStyle = bsNone
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Courier New'
+      Font.Style = []
       Lines.Strings = (
         '')
+      ParentFont = False
+      ScrollBars = ssVertical
       TabOrder = 0
     end
   end

@@ -19,7 +19,7 @@ type
   strict private
     FRepositorio: IOrdemCargaRepositorio;
     FIntegracaoWmsServico: IIntegracaoWmsServico;
-    function  ConsultarDadosOrdemCarga(const AIdCarga: Integer): TOrdemCarga;
+    function ConsultarDadosOrdemCarga(const AIdCarga: Integer): TOrdemCarga;
     function IncluirCargaNoWms(const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
   public
     constructor Create(const ARepositorio: IOrdemCargaRepositorio; const AServico: IIntegracaoWmsServico);
@@ -30,7 +30,10 @@ type
 implementation
 
 uses
+  SysUtils,
   System.Generics.Collections,
+  // TMS Logger
+  Vcl.TMSLogging,
   // ViaServidorIntegracao
   vs.modulos.ordemcarga.servico.dto.incluirordemcarga;
 
@@ -39,7 +42,9 @@ uses
 function TSincronizarOrdemCargaCasoUso.ConsultarDadosOrdemCarga(
   const AIdCarga: Integer): TOrdemCarga;
 begin
+  TMSLogger.Info('Consultando os dados da Ordem de Carga.');
   Result := FRepositorio.Consultar(AIdCarga);
+  Sleep(3000);
 end;
 
 constructor TSincronizarOrdemCargaCasoUso.Create(
@@ -55,15 +60,23 @@ function TSincronizarOrdemCargaCasoUso.Executar(const ARequisicao: TRequisicaoSi
 var
   LOrdemCarga: TOrdemCarga;
 begin
+  Sleep(5000);
+  TMSLogger.Info(Format('Sincronizando a Ordem Carga(%d).',[ARequisicao.idCarga]));
+  Sleep(3000);
   LOrdemCarga := Self.ConsultarDadosOrdemCarga(ARequisicao.idCarga);
   Result := Self.IncluirCargaNoWms(LOrdemCarga);
+  TMSLogger.LogSeparator;
 end;
 
 function TSincronizarOrdemCargaCasoUso.IncluirCargaNoWms(
   const AOrdemCarga: TOrdemCarga): TRespostaPadraoDto;
 begin
+  TMSLogger.Info('Incluindo a Ordem de Carga no Integrador Wms.');
   if Assigned(FIntegracaoWmsServico) then
+  begin
+    Sleep(3000);
     Result := FIntegracaoWmsServico.IncluirCarga(AOrdemCarga)
+  end
   else
     Result := TRespostaPadraoDtoFactory.Falha('Serviço de integração não informado!');
 end;

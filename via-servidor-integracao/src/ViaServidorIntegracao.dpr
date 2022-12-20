@@ -36,7 +36,7 @@ uses
 {$R *.res}
 
 begin
-  ReportMemoryLeaksOnShutdown := True;
+  //ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TFPrincipal, FPrincipal);

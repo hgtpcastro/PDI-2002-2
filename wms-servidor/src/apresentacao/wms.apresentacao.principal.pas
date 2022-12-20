@@ -11,7 +11,12 @@ uses
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
-  Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  Vcl.TMSLogging,
+  TMSLoggingCore,
+  TMSLoggingUtils;
 
 type
 
@@ -24,7 +29,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure DoOutput(Sender: TObject; AOutputInformation: TTMSLoggerOutputInformation);
   end;
 
 var
@@ -37,9 +42,21 @@ uses
 
 {$R *.dfm}
 
+procedure TFPrincipal.DoOutput(Sender: TObject;
+  AOutputInformation: TTMSLoggerOutputInformation);
+begin
+  memLog.Lines.Add(
+    TTMSLoggerUtils.GetConcatenatedLogMessage(AOutputInformation, True)
+  );
+end;
+
 procedure TFPrincipal.FormCreate(Sender: TObject);
 begin
+  TMSLogger.OnOutput := Self.DoOutput;
+  TMSLogger.Clear;
+
   wms.infra.IniciarServidorHttp;
+  TMSLogger.Info('Servidor de integração rodando na porta: 8089');
 end;
 
 procedure TFPrincipal.FormDestroy(Sender: TObject);
